@@ -17,7 +17,4 @@ has an earlier timestamp, it takes linear time to traverse the linked list and p
 order. However, I'm assuming that such operations is rare in a real scenario and I did not prioritize
 optimizing it.
 
-
-
-
 3. What has been a favorite school/personal project thus far? What about it that challenged you?

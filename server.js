@@ -36,7 +36,7 @@ app.post('/add', (req, res) => {
   const points = req.body.points
   const timestamp = req.body.timestamp
 
-  // add or increment this payer in payerCount
+  // update payerCount and payerPoints
   if (payer in payerCount) {
     payerCount[payer]++
   } else {
@@ -134,7 +134,7 @@ app.post('/spend', (req, res) => {
 
       if (payerCount[current.payer]>1 && current.prev) {
         // this node's points will be set to 0, remove it as there are other nodes with the same
-        // payer, hence this node is an extra
+        // payer and this node is an extra
         payerCount[current.payer]--
         let prevNode=current.prev
         let nextNode=current.next
