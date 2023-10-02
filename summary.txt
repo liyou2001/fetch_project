@@ -8,9 +8,14 @@ in which I have a lot of experience in.
 
 I used a linked list to store the transactions, which allows for constant time insertion of transactions 
 at the start and end of the list. I think that one advantage that this has over an array is the deletion 
-of transactions. When calling the /spend endpoint, I want to delete extra transactions from the list so 
-that there isn't a bunch of linked list nodes with 0 points in it, which may increase the runtime of future
-operations that require traversal.
+of transactions. When calling the /spend endpoint, I want to delete extra transactions from the same payer 
+so that there isn't a bunch of linked list nodes with 0 points in it, which may increase the runtime of future
+operations that require traversing the linked list. 
+
+One disadvantage of using a linked list is that if a transaction is added after another but this transaction
+has an earlier timestamp, it takes linear time to traverse the linked list and put the transaction in sorted
+order. However, I'm assuming that such operations is rare in a real scenario and I did not prioritize
+optimizing it.
 
 
 
