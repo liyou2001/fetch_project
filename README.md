@@ -39,7 +39,7 @@ Request body should be a JSON string with ```points``` field.
 
 Fetching current point balance:
 ```
-http://localhost:8000/balance
+GET http://localhost:8000/balance
 ```
 
 

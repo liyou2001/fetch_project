@@ -8,7 +8,7 @@ const port = 8000
 // middleware
 app.use(express.json())
 
-let totalPoints=0 // total number of points, useful for checks
+let totalPoints=0 // total number of points, useful for sanity checks
 let tail=null // node with the latest timestamp
 let head=null // node with the earliest timestamp
 let payerPoints={} // number of points for each payer
