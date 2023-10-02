@@ -13,7 +13,7 @@ let tail=null // node with the latest timestamp
 let head=null // node with the earliest timestamp
 let payerPoints={} // number of points for each payer
 
-// Node class for the linked list
+// Node class for the linked list, each node corresponds to a transaction
 class Node {
   constructor(payer, points, timestamp) {
     this.payer=payer
