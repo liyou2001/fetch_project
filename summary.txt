@@ -1,8 +1,8 @@
 1. Why did you choose the tools, libraries, and language you used for the coding exercise?
 
 I chose NodeJS with the ExpressJS framework for this coding exercise because of its simplicity. 
-I think that for a small project, NodeJS is easy to setup, use, and understand. It is also a 
-framework in which I have a lot of experience in.
+I think that for a small project, NodeJS is easy to setup, use, and understand. ExpressJS is 
+also a framework in which I have a lot of experience in.
 
 2. What are the advantages and disadvantages of your solution?
 
