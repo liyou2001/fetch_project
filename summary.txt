@@ -30,8 +30,8 @@ it will instantly calculate and give you an update on the amount of carbon emiss
 contributed by purchasing the product. It uses Plaid API and I think that the most challenging part 
 is moving and storing the link and access token. I initially thought that it would be better to 
 develop both the frontend and the backend simulaneously, but it turned out to be very difficult to
-debug, especially when I had to manipulate and pass around the tokens. I learnt that will be easier to build either 
-one of them first, unit test them, then move on to developing the other part, which will help to 
-isolate any bugs. I think that this is an example of something that you cannot learn in a classroom
-setting and I am definitely very eager to intern at Fetch because this would mean that I can learn
-good engineering practices that will make me a better developer.
+debug, especially when I had to manipulate and pass around the tokens. I learnt that it will be 
+easier to build either one of them first, unit test them, then move on to developing the other part, 
+which will help to isolate any bugs. I think that this is an example of something that you cannot 
+learn in a classroom setting and I am definitely very eager to intern at Fetch because this would 
+mean that I can learn good engineering practices that will make me a better developer.
