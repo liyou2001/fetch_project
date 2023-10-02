@@ -12,12 +12,6 @@ let totalPoints=0 // total number of points, useful for checks
 let tail=null // node with the latest timestamp
 let head=null // node with the earliest timestamp
 
-// payerCount keeps track of number of nodes for each payer. Each payer should have at
-// least 1 node count. When /spend is called, nodes with payer where payerCount>1 will be 
-// removed if the points is reduced to 0. This will ensure that there isn't a bunch of nodes
-// with 0 points, maximizing future computational speed.
-let payerCount={} 
-
 let payerPoints={} // number of points for each payer
 
 // Node class for the linked list
@@ -26,8 +20,7 @@ class Node {
     this.payer=payer
     this.points = points
     this.timestamp = timestamp
-    this.next = null 
-    this.prev = null               
+    this.next = null            
   }
 }
 
@@ -36,13 +29,7 @@ app.post('/add', (req, res) => {
   const points = req.body.points
   const timestamp = req.body.timestamp
 
-  // update payerCount and payerPoints
-  if (payer in payerCount) {
-    payerCount[payer]++
-  } else {
-    payerCount[payer]=1
-  }
-
+  // update payerPoints
   if (payer in payerPoints) {
     payerPoints[payer]+=points
   } else {
@@ -58,28 +45,25 @@ app.post('/add', (req, res) => {
   } else if (Date.parse(timestamp)>Date.parse(tail.timestamp)) {
     // this transaction is the latest, append it
     tail.next=node
-    node.prev=tail
     tail=node
   } else if (Date.parse(timestamp)<=Date.parse(head.timestamp)) {
     // this transaction is the earliest, insert in front
     node.next=head
-    head.prev=node
     head=node
   } else {
     // find position for this transaction to be inserted
     current=head
-    while (Date.parse(current.timestamp)<=Date.parse(node.timestamp)) {
+    while (current.next) {
+      if (Date.parse(current.next.timestamp)>=Date.parse(node.timestamp)){
+        break
+      }
       current=current.next
     }
 
-    // link previous node
-    prevNode=current.prev
-    prevNode.next=node
-    node.prev=prevNode
-
-    // link next node
-    node.next=current
-    current.prev=node
+    // link
+    let nextNode=current.next
+    current.next=node
+    node.next=nextNode
   }
 
   // update total 
@@ -119,7 +103,7 @@ app.post('/spend', (req, res) => {
 
       points=0 // no more points to be spent
     } else {
-      // scenario where after spending this transaction's points, there are still more 
+      // after spending this transaction's points, there are still more 
       // points to be spent
       points=points-current.points
       totalPoints=totalPoints-current.points
@@ -132,35 +116,8 @@ app.post('/spend', (req, res) => {
         output[current.payer]= -current.points
       }
 
-      if (payerCount[current.payer]>1 && current.prev) {
-        // this node's points will be set to 0, remove it as there are other nodes with the same
-        // payer and this node is an extra
-        payerCount[current.payer]--
-        let prevNode=current.prev
-        let nextNode=current.next
-
-        current=current.next // move to next node
-
-        // unlink this node
-        prevNode.next=nextNode
-        nextNode.prev=prevNode
-
-      } else if (payerCount[current.payer]>1 && !current.prev) {
-        // same operation as above but this node is the head
-        payerCount[current.payer]--
-        let nextNode=current.next
-
-        current=current.next
-
-        // unlink
-        nextNode.prev=null
-        head=nextNode
-
-      } else if (payerCount[current.payer]===1) {
-        // Do not remove this node since we also want to keep track of payers that have 0 points
-        current.points=0
-        current=current.next
-      }
+      // remove this node while moving to the next
+      current=current.next
     } 
   }
 
