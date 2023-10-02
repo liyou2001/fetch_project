@@ -55,8 +55,9 @@ app.post('/add', (req, res) => {
     while (current.next) {
       if (Date.parse(current.next.timestamp)>=Date.parse(node.timestamp)){
         break
+      } else {
+        current=current.next
       }
-      current=current.next
     }
 
     // link
@@ -85,7 +86,7 @@ app.post('/spend', (req, res) => {
 
   // traverse linked list
   while (current && points>0) {
-    if (current.points>=points) {
+    if (current.points>points) {
       let remPoints=current.points-points // remaining points of current node after spending
       current.points=remPoints
 
