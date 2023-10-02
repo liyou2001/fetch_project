@@ -1,19 +1,32 @@
 1. Why did you choose the tools, libraries, and language you used for the coding exercise?
 
 I chose NodeJS with the Express framework for this coding exercise because of its simplicity. 
-I think that for a small project, NodeJS is easy to setup, use, and understand. It is also a framework
-in which I have a lot of experience in.
+I think that for a small project, NodeJS is easy to setup, use, and understand. It is also a 
+framework in which I have a lot of experience in.
 
 2. What are the advantages and disadvantages of your solution?
 
-I used a linked list to store the transactions, which allows for constant time insertion of transactions 
-at the start and end of the list. I think that one advantage that this has over an array is the deletion 
-of transactions. When calling the /spend endpoint, I want to delete transactions with 0 points after spending it,
-which will reduce the number of transactions in the list, hence optimizing future traversal operations.
+I used a linked list to store the transactions, which allows for constant time insertion of 
+transactions at the start and end of the list. I think that one advantage that this has 
+over an array is the deletion of transactions. When calling the /spend endpoint, I want to 
+delete transactions with 0 points, which will reduce the number of transactions 
+in the list, hence optimizing future traversal operations.
 
-One disadvantage of using a linked list is that if a transaction is added after another but this transaction
-has an earlier timestamp, it takes linear time to traverse the linked list and put the transaction in sorted
-order. However, I'm assuming that such operations is rare in a real scenario and I did not prioritize
-optimizing it.
+One disadvantage of using a linked list is that if a transaction is added after another but this 
+transaction has an earlier timestamp, it takes linear time to traverse the linked list and put the 
+transaction in sorted order. However, I'm assuming that such operations is rare and I did not 
+prioritize optimizing it.
 
 3. What has been a favorite school/personal project thus far? What about it that challenged you?
+
+I was working on a full-stack project which aims to deploy a real-time carbon footprint calculator. 
+This application allows you to sync your bank account and whenever you make an online transaction, 
+it will instantly calculate and give you an update on the amount of carbon emission you have 
+contributed by purchasing the product. It uses Plaid API and I think that the most challenging part 
+is moving and storing the link and access token. I initially thought that it would be better to 
+develop both the frontend and the backend simulaneously, but it turned out to be very difficult to
+debug, especially when I had to manipulate the tokens. I learnt that will be easier to build either 
+one of them first, unit test them, then move on to developing the other part, which will help to 
+isolate any bugs. I think that this is an example of something that you cannot learn in a classroom
+setting and I am definitely very eager to intern at Fetch because this would mean that I can learn
+good engineering practices that will make me a better developer.

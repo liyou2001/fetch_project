@@ -11,7 +11,6 @@ app.use(express.json())
 let totalPoints=0 // total number of points, useful for checks
 let tail=null // node with the latest timestamp
 let head=null // node with the earliest timestamp
-
 let payerPoints={} // number of points for each payer
 
 // Node class for the linked list
@@ -20,7 +19,7 @@ class Node {
     this.payer=payer
     this.points = points
     this.timestamp = timestamp
-    this.next = null            
+    this.next = null // Next node that this node points to            
   }
 }
 
@@ -87,7 +86,7 @@ app.post('/spend', (req, res) => {
   // traverse linked list
   while (current && points>0) {
     if (current.points>=points) {
-      let remPoints=current.points-points
+      let remPoints=current.points-points // remaining points of current node after spending
       current.points=remPoints
 
       // add to output
