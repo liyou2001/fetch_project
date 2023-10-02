@@ -9,13 +9,18 @@ framework in which I have a lot of experience in.
 I used a linked list to store the transactions, which allows for constant time insertion of 
 transactions at the start and end of the list. I think that one advantage that this has 
 over an array is the deletion of transactions. When calling the /spend endpoint, I want to 
-delete transactions with 0 points, which will reduce the number of transactions 
-in the list, hence optimizing future traversal operations.
+delete transactions with 0 points, which will reduce the number of transactions in the list, 
+hence optimizing future traversal operations. I've also added a payerPoints hashmap, where it
+keeps track of the number of points for each payer, hence /balance will be fast, but this also uses
+slightly more memory.
 
 One disadvantage of using a linked list is that if a transaction is added after another but this 
 transaction has an earlier timestamp, it takes linear time to traverse the linked list and put the 
-transaction in sorted order. However, I'm assuming that such operations is rare and I did not 
-prioritize optimizing it.
+transaction in sorted order. However, I'm assuming that such operations is rare and there isn't a 
+priority to opimize it. I guess another way to implement this would be through a heap, which will 
+make inserting into the middle faster (logn complexity), but this will result in appending at the 
+back to be slower (logn). I think that in most cases, appending to the back will be more common,
+so I am willing to make this trade off.
 
 3. What has been a favorite school/personal project thus far? What about it that challenged you?
 
